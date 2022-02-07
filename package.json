@@ -1,5 +1,5 @@
 {
-  "name": "@purple/heatmap",
+  "name": "heatmap-node",
   "version": "0.0.1",
   "description": "canvas heat maps for node",
   "main": "index.js",
@@ -26,7 +26,8 @@
   },
   "keywords": [
     "heatmap",
-    "canvas"
+    "canvas",
+    "node"
   ],
   "license": "MIT/X11",
   "engine": {
