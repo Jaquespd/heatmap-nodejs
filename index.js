@@ -156,22 +156,38 @@ Heat.prototype.addBackground = async function (buffer) {
   return this;
 };
 
-Heat.prototype.addTimestamp = async function (day, time) {
+Heat.prototype.addTimestamp = async function (title, day, time) {
   var width = this.canvas.width;
   var height = this.canvas.height;
   var ctx = this.backgroundCanvas.getContext("2d");
 
+  const titleWidth = ctx.measureText(title).width;
+  const dayWidth = ctx.measureText(day).width;
   const timeWidth = ctx.measureText(time).width;
 
-  ctx.textAlign = "center";
+  // const buffer = fs.readFileSync("./bg.png");
+  // console.log("bu", buffer);
+  // const localImage = await loadImage(buffer);
+  // console.log(localImage);
+  // ctx.drawImage(localImage, 0, 0, width, height);
+
+  const boxWidth = Math.max(titleWidth, dayWidth, timeWidth) + 150;
+  const boxHeight = 60 + 50;
+
+  ctx.fillStyle = "#000";
+  // console.log("a", boxHeight, boxWidth);
+  ctx.fillRect(0, 0, boxWidth, boxHeight);
+
+  ctx.textBaseline = "top";
+  ctx.textAlign = "left";
   ctx.fillStyle = "#fff";
   ctx.strokeStyle = "black";
 
   ctx.font = "bold 13pt Helveric";
-  ctx.strokeText(time, width - timeWidth / 2 - 150, 570);
-  ctx.fillText(time, width - timeWidth / 2 - 150, 570);
-  ctx.strokeText(day, 200, 570);
-  ctx.fillText(day, 200, 570);
+  ctx.fillText(title, 25, 10);
+  ctx.fillText(day, 25, 40);
+  ctx.fillText(time, 25, 70);
 
+  // fs.writeFileSync("blob2.png", this.backgroundCanvas.toBuffer());
   return this;
 };
