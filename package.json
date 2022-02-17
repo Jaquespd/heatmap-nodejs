@@ -1,6 +1,6 @@
 {
   "name": "heatmap-node",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "canvas heat maps for node",
   "main": "index.js",
   "directories": {

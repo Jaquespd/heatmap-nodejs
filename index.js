@@ -155,3 +155,23 @@ Heat.prototype.addBackground = async function (buffer) {
 
   return this;
 };
+
+Heat.prototype.addTimestamp = async function (day, time) {
+  var width = this.canvas.width;
+  var height = this.canvas.height;
+  var ctx = this.backgroundCanvas.getContext("2d");
+
+  const timeWidth = ctx.measureText(time).width;
+
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#fff";
+  ctx.strokeStyle = "black";
+
+  ctx.font = "bold 13pt Helveric";
+  ctx.strokeText(time, width - timeWidth / 2 - 150, 570);
+  ctx.fillText(time, width - timeWidth / 2 - 150, 570);
+  ctx.strokeText(day, 200, 570);
+  ctx.fillText(day, 200, 570);
+
+  return this;
+};
