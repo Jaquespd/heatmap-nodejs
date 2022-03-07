@@ -156,7 +156,13 @@ Heat.prototype.addBackground = async function (buffer) {
   return this;
 };
 
-Heat.prototype.addTimestamp = async function (title, day, time) {
+Heat.prototype.addTimestamp = async function (
+  title,
+  day,
+  time,
+  subtitle1,
+  subtitle2
+) {
   var width = this.canvas.width;
   var height = this.canvas.height;
   var ctx = this.backgroundCanvas.getContext("2d");
@@ -164,6 +170,8 @@ Heat.prototype.addTimestamp = async function (title, day, time) {
   const titleWidth = ctx.measureText(title).width;
   const dayWidth = ctx.measureText(day).width;
   const timeWidth = ctx.measureText(time).width;
+  const subtitle1Width = ctx.measureText(subtitle1).width;
+  const subtitle2Width = ctx.measureText(subtitle2).width;
 
   // const buffer = fs.readFileSync("./bg.png");
   // console.log("bu", buffer);
@@ -171,8 +179,10 @@ Heat.prototype.addTimestamp = async function (title, day, time) {
   // console.log(localImage);
   // ctx.drawImage(localImage, 0, 0, width, height);
 
-  const boxWidth = Math.max(titleWidth, dayWidth, timeWidth) + 150;
-  const boxHeight = 60 + 50;
+  const boxWidth =
+    Math.max(titleWidth, dayWidth, timeWidth, subtitle1Width, subtitle2Width) +
+    150;
+  const boxHeight = 75 + 50;
 
   ctx.fillStyle = "#000";
   // console.log("a", boxHeight, boxWidth);
@@ -185,8 +195,10 @@ Heat.prototype.addTimestamp = async function (title, day, time) {
 
   ctx.font = "bold 13pt Helveric";
   ctx.fillText(title, 25, 10);
-  ctx.fillText(day, 25, 40);
-  ctx.fillText(time, 25, 70);
+  ctx.fillText(day, 25, 30);
+  ctx.fillText(time, 25, 50);
+  ctx.fillText(subtitle1, 25, 70);
+  ctx.fillText(subtitle2, 25, 90);
 
   // fs.writeFileSync("blob2.png", this.backgroundCanvas.toBuffer());
   return this;
